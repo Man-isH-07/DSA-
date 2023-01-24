@@ -1,0 +1,31 @@
+//3. Longest Substring Without Repeating Characters
+//Given a string s, find the length of the longest substring without repeating characters.
+//Concept : HashMap
+
+//Code :
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+    
+        HashMap<Character,Integer>map = new HashMap<>();
+        int start = 0;
+        int end;
+        int len = 0;
+        char ch;
+        for(end = 0;end < s.length();end++)
+        {
+            ch = s.charAt(end);
+            if(map.containsKey(ch) )
+            {
+                if(start <= map.get(ch))
+                {
+                    start = map.get(ch)+1;
+                }
+            }
+           len = Math.max(len,(end-start +1));
+           map.put(ch,end);  
+        }
+       
+        return len;
+    }
+}
